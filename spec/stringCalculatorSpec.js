@@ -34,6 +34,6 @@ it("should allow \\n in between the input number string", function(){
     });
 
     it("should not allow negative numbers", function(){
-      expect(strCal("2,-2,2")).toThrow(new Error("negatives restricated"));
+      expect(strCal("1,-2,2")).toThrow(new Error("negatives restricated"));
     });
   });
