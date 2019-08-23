@@ -2,17 +2,12 @@ describe("A simple string calculator", function() {
 
   it ("should return zero to an empty string", function() {
 
-     expect(strCal("")).toEqual(0);
-  });
-
-  it ("should return the same number if only one number was given ", function() {
-    
-    expect(strCal("1")).toEqual(1);
+     expect(Add("")).toEqual(0);
   });
 
    it ("should return the sum of two numbers in a string", function() {
  
-    expect(strCal("1,2")).toEqual(2);
+    expect(Add("1,2")).toEqual(3);
   });
 
   it("should return the sum of multiple unknown number of integers", function(){
@@ -26,14 +21,31 @@ describe("A simple string calculator", function() {
    const sum = res.reduce((pv, cv) => pv+cv, 0);
     // converts the array to a string
    const arg = res.join();
-    expect(strCal("1,2,3,4,5")).toEqual(19);
+    expect(Add(arg)).toEqual(sum);
   });
 
-it("should allow \\n in between the input number string", function(){
-    expect(strCal("1,2, \\n 3,4,6")).toEqual(20);
+	it("should handle new lines between numbers", function(){
+    expect(Add("1\n2,3")).toEqual(6);
     });
 
     it("should not allow negative numbers", function(){
-      expect(strCal("2,-2,2")).toThrow(new Error("negatives restricated"));
+      expect(function(){Add("2,-2,2")}).toThrow(new Error("negatives not allowed."));
     });
-  });
+
+	it("should support different delimiters", function(){
+      expect(Add("//;\n1;2")).toEqual(3);
+    });
+
+    it("should ignore numbers that are greater than 1000", function(){
+    	expect(Add("1,1001,3")).toEqual(4);
+    });
+
+    it("should allow multiple delimeters" , function (){
+    	expect(Add("//[*][%]\n1*2%3")).toEqual(6);
+    });
+
+    it("should allow multiple delimeters with length longer than one char" , function (){
+    	expect(Add("//[*$%%]9[%**]\n1*2%3")).toEqual(15);
+    });
+
+});
