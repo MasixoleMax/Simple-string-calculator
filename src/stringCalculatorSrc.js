@@ -1,23 +1,25 @@
-function empty(string){
-  if (string == "") {
-    return 0;
-  } else {
-    return false;
-  }
-}
 
-function log(x){
- return x;
-};
+function strCal(str){
 
-function add(array) {
-  var sum = 0;
-  for (let i in array) {
-    sum = sum + array[i];
-    
-  }
-  return sum;
-}
+ let numbers = 
+ //this.number.replace(/(\r\n|\n|\r)/gm ,",");
 
+      if (numbers == "") {
+        return 0;
+} 
+     else if(numbers.length === 1) { 
+        return (parseInt(numbers));
+} else 
 
+  {
+        x = numbers.split(",");
+        var sum = 0;
+        var arrayLength = res.length;
+        for (var i = 0; i < x.length; i++) {
+        sum = sum + parseInt(x[i]);
 
+          };
+
+          return sum;   
+      };
+    };
