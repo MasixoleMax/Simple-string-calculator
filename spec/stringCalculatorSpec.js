@@ -10,18 +10,9 @@ describe("A simple string calculator", function() {
     expect(Add("1,2")).toEqual(3);
   });
 
-  it("should return the sum of multiple unknown number of integers", function(){
-    // creates a random array
-   const randomArray = (length, max) => [...new Array(length)]
-    .map(() => Math.round(Math.random() * max));
-    // creates a random number between 1 and 100
-   const randy = Math.floor((Math.random() * 100) + 1);
-   const res = randomArray(randy,randy);
-    // sums up an array
-   const sum = res.reduce((pv, cv) => pv+cv, 0);
-    // converts the array to a string
-   const arg = res.join();
-    expect(Add(arg)).toEqual(sum);
+  it("should return the sum of multiple number of integers in a string", function(){
+   
+    expect(Add("1,2,5,5")).toEqual(13);
   });
 
 	it("should handle new lines between numbers", function(){
