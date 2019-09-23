@@ -4,7 +4,7 @@ function Add(str){
 	let regex = /\d{1,5}/gm;
 
 	if(str.includes("-")){
-		throw new Error("negatives not allowed.")
+		throw new Error( err + "negatives not allowed.")
 	};
 
 	let numbers = str.match(regex)
