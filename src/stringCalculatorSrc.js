@@ -1,27 +1,52 @@
-function Add(str){
+function Add (str){
+    let sum = 0;
+    let regularExp = new RegExp(/-?\d+/g);
+    let arr = str.match(regularExp);
+    let negatives = [];
 
-	let sum = 0;
-	let regex = /\d{1,5}/gm;
+    if (str == ""){
 
-	if(str.includes("-")){
-		throw new Error( err + "negatives not allowed.")
-	};
+        return 0;
+    }
 
-	let numbers = str.match(regex)
+    for(let i = 0; i < arr.length; i++){
 
-	if(str == "") {
-		return 0;	
-	};
+        if (arr[i] < 0){
 
-	for(let i = 0; i < numbers.length; i++){
+            negatives.push(arr[i]);
+        } 
+        else {
+            if(parseInt(arr[i]) > 1000){
+                continue;
+            } else {
+                sum += parseInt(arr[i]);
+            }
+        }
+    }
+       
+    if(negatives.length > 0){
 
-			if(numbers[i] >= 1001){
-				continue;					
+        let negNumbers = " ";
 
-			} else{
-				sum += parseInt(numbers[i])
-			};
-		};
+        for(var i = 0; i < negatives.length; i++){
 
-	return sum;
-};
+            if(i == negatives.length  - 1){
+        
+                negNumbers += negatives[i];
+                
+            }
+
+            else{
+                negNumbers += negatives[i] + ",";
+            } 
+        }
+        throw("negatives not allowed " + negNumbers);
+        
+    }  
+    
+    return sum;
+}
+
+module.exports = Add;
+
+console.log(Add("1,3, 4000, #@*&7"));
